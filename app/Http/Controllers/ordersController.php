@@ -54,6 +54,11 @@ class ordersController extends Controller
 
     public function edit(Request $request)
     {
+
+        $validated = $request->validate([
+            'location' => 'required',
+        ]);
+
         $order = Order::find($request->id);
         if (!$order)
             return redirect()->back();

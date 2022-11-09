@@ -1,9 +1,11 @@
 @extends('layouts.app')
 @section('content')
 
-                    @if(Session::has('message'))
-                    <h3 style="text-align:right;direction:rtl;" class="form-text text-success"> {{ Session::get('message') }} </h3>
-                    @endif
+
+                    @error('location')
+                    <small class="form-text text-danger">{{$message}}</small>
+                    @enderror
+
 
                     <form method="POST" class="pt-3" action="{{ route('edit.order') }}">
                       @csrf
