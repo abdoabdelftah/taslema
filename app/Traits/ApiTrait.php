@@ -38,5 +38,4 @@ trait ApiTrait
             $key => $value
         ]);
     }
-
 }

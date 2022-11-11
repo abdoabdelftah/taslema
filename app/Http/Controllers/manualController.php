@@ -20,7 +20,6 @@ class manualController extends Controller
             $user = Auth::user();
 
             return redirect()->route('main.orders');
-
         }
 
         return redirect()->back()->withErrors(['errors' => ' رقم الهاتف غير صحيح او كلمة المرور غير صحيحة']);

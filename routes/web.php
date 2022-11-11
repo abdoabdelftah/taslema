@@ -19,12 +19,11 @@ use Illuminate\Support\Facades\Auth;
 
 ///////Log in section///////////
 Route::get('/', function () {
-    if(Auth::check()) {
+    if (Auth::check()) {
         return redirect()->route('orders');
     }
 
     return view('login');
-
 })->middleware('guest')->name('login');
 
 
@@ -37,27 +36,24 @@ Route::post('logme', 'App\Http\Controllers\manualController@checkAdminLogin')->n
 
 ////Start private section////////
 
-Route::group(['middleware' => ['auth']], function() {
+Route::group(['middleware' => ['auth']], function () {
 
 
 
-    Route::get('/orders','App\Http\Controllers\ordersController@orders')->name('main.orders');
+    Route::get('/orders', 'App\Http\Controllers\ordersController@orders')->name('main.orders');
 
 
-    Route::get('/order/{id}','App\Http\Controllers\ordersController@order');
+    Route::get('/order/{id}', 'App\Http\Controllers\ordersController@order');
 
 
-    Route::get('/order/edit/{id}','App\Http\Controllers\ordersController@showedit');
+    Route::get('/order/edit/{id}', 'App\Http\Controllers\ordersController@showedit');
 
     Route::post('/order/doedit', 'App\Http\Controllers\orderscontroller@edit')->name('edit.order');
 
 
-    Route::get('/order/delete/{id}','App\Http\Controllers\ordersController@delete');
+    Route::get('/order/delete/{id}', 'App\Http\Controllers\ordersController@delete');
 
 
+
+    Route::view('/page2', 'page');
 });
-
-
-
-
-

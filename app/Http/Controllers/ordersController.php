@@ -100,31 +100,29 @@ class ordersController extends Controller
 
 
 
-        $arr = $request->num;
+        $old_arr = explode(",", $request->nums);
+
+
+
+
+        $arr = array_values(array_filter($old_arr, function ($value) {
+            return $value > 0;
+        }));
+
+
+
         $val = $arr[0];
         $n = count($arr);
 
-        for($i=0;$i<$n;$i++) {
+        for ($i = 0; $i < $n; $i++) {
 
-            if($arr[$i] >= 0){
 
-                if($val > $arr[$i]) {
+            if ($val > $arr[$i]) {
 
-                    $val = $arr[$i];
-
-                }
-
+                $val = $arr[$i];
             }
+        }
 
-       }
-
-
-        return $this->returnData('Min positive', $val);
-
-
-
-
-
-
+        return $this->returnData('MinPositive', $val);
     }
 }
